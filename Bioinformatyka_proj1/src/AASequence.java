@@ -1,30 +1,30 @@
-class AAList {
-    protected String list;
+class AASequence {
+    protected String sequence;
 
-    public AAList(String s) {
-        list = s;
+    public AASequence(String s) {
+        sequence = s;
     }
 
     public int count() {
-        return list.length();
+        return sequence.length();
     }
 
     public String Find(int l, String str) {
         if (str.startsWith("[")) {
             for (int s = 1; s < str.length() - 1; s++) {
-                if (list.charAt(l) == str.charAt(s)) return String.valueOf(list.charAt(l));
+                if (sequence.charAt(l) == str.charAt(s)) return String.valueOf(sequence.charAt(l));
             }
         }
         if (str.startsWith("{")) {
             int check = 0;
             for (int s = 1; s < str.length() - 1; s++) {
-                if (list.charAt(l) == str.charAt(s)) check = 1;
+                if (sequence.charAt(l) == str.charAt(s)) check = 1;
             }
-            if (check == 0) return String.valueOf(list.charAt(l));
+            if (check == 0) return String.valueOf(sequence.charAt(l));
         }
         if (str.startsWith("x")) {
             if (str.length() == 1) { //x
-                return String.valueOf(list.charAt(l));
+                return String.valueOf(sequence.charAt(l));
             } else {
                 if (str.contains(",")) //x(2,4)
                 {
@@ -33,7 +33,7 @@ class AAList {
                     int maxNumber = Integer.parseInt(String.valueOf(str.charAt(4)));
                     String result = "";
                     for (int i = 0; i < maxNumber; i++) {
-                        result += String.valueOf(list.charAt(l + i));
+                        result += String.valueOf(sequence.charAt(l + i));
                         counter++;
                     }
                     if (counter >= minNumber && counter <= maxNumber) return result;
@@ -42,14 +42,14 @@ class AAList {
                     String result = "";
                     int number = Integer.parseInt(String.valueOf(str.charAt(2)));
                     for (int i = 0; i < number; i++)
-                        result += String.valueOf(list.charAt(l + i));
+                        result += String.valueOf(sequence.charAt(l + i));
                     return result;
                 }
             }
-        } else if (str.charAt(0) == list.charAt(l)) {
+        } else if (str.charAt(0) == sequence.charAt(l)) {
             if (str.length() == 1) //G
             {
-                return String.valueOf(list.charAt(l));
+                return String.valueOf(sequence.charAt(l));
             } else {
                 if (str.contains(",")) //G(2,4)
                 {
@@ -58,7 +58,7 @@ class AAList {
                     int maxNumber = Integer.parseInt(String.valueOf(str.charAt(4)));
                     String result = "";
                     for (int i = 0; i < maxNumber; i++) {
-                        if (list.charAt(l + i) == str.charAt(0)) counter++;
+                        if (sequence.charAt(l + i) == str.charAt(0)) counter++;
                         result += str.charAt(0);
                     }
                     if (counter >= minNumber && counter <= maxNumber) return result;
@@ -68,7 +68,7 @@ class AAList {
                     int number = Integer.parseInt(String.valueOf(str.charAt(2)));
                     String result = "";
                     for (int i = 0; i < number; i++) {
-                        if (list.charAt(l + i) == str.charAt(0)) counter++;
+                        if (sequence.charAt(l + i) == str.charAt(0)) counter++;
                         result += str.charAt(0);
                     }
                     if (counter == number) return result;
@@ -78,4 +78,3 @@ class AAList {
         return "0";
     }
 }
-
