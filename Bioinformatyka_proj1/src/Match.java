@@ -15,7 +15,8 @@ class Match {
     public char[] findMatch() {
         for (int i = 0; i < list.count(); i++) {
             int q = 0;
-            int totalMatch = 0;
+            int idx = 0;
+            int totalChecks = 0;
             String matching = "1";
             int l = i;
 
@@ -24,22 +25,22 @@ class Match {
                 matching = "0";
                 if (l < list.count())
                     matching = list.Find(l, queries.get(q));
-                if (matching.length() > 1) //in case of x(4)
+                if (matching.length() > 1) //in case of x(2,4), x(4), G(2,4), G(4)...
                 {
                     for (int m = 0; m < matching.length(); m++) {
                         matched[q + m] = matching.charAt(m);
+                        idx++;
                     }
-                    totalMatch++;
-                    q++;
                     l += matching.length();
                 } else if (matching.length() == 1 && matching != "0") //all other cases
                 {
-                    matched[q] = matching.toCharArray()[0];
-                    totalMatch++;
-                    q++;
+                    matched[idx] = matching.toCharArray()[0];
                     l++;
+                    idx++;
                 }
-                if (totalMatch == queries.size()) //all queries matched
+                totalChecks++;
+                q++;
+                if (totalChecks == queries.size()) //all queries checked
                 {
                     return matched;
                 }

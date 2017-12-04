@@ -23,15 +23,28 @@ class AAList {
             if (check == 0) return String.valueOf(list.charAt(l));
         }
         if (str.startsWith("x")) {
-            if (str.length() == 1) {
+            if (str.length() == 1) { //x
                 return String.valueOf(list.charAt(l));
-            } else //x(3)
-            {
-                String result = "";
-                int number = Integer.parseInt(String.valueOf(str.charAt(2)));
-                for (int i = 0; i < number; i++)
-                    result += String.valueOf(list.charAt(l + i));
-                return result;
+            } else {
+                if (str.contains(",")) //x(2,4)
+                {
+                    int counter = 0;
+                    int minNumber = Integer.parseInt(String.valueOf(str.charAt(2)));
+                    int maxNumber = Integer.parseInt(String.valueOf(str.charAt(4)));
+                    String result = "";
+                    for (int i = 0; i < maxNumber; i++) {
+                        result += String.valueOf(list.charAt(l + i));
+                        counter++;
+                    }
+                    if (counter >= minNumber && counter <= maxNumber) return result;
+                } else //x(3)
+                {
+                    String result = "";
+                    int number = Integer.parseInt(String.valueOf(str.charAt(2)));
+                    for (int i = 0; i < number; i++)
+                        result += String.valueOf(list.charAt(l + i));
+                    return result;
+                }
             }
         } else if (str.charAt(0) == list.charAt(l)) {
             if (str.length() == 1) //G
