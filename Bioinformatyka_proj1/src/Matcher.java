@@ -14,32 +14,32 @@ class Matcher {
 
     public char[] findMatch() {
         for (int i = 0; i < sequence.count(); i++) {
-            int q = 0;
+            int currIdx = 0;
             int idx = 0;
             int totalChecks = 0;
             String matching = "1";
-            int l = i;
+            int matchIdx = i;
 
             while (matching != "0") //until all queries match
             {
                 matching = "0";
-                if (l < sequence.count())
-                    matching = sequence.Find(l, queries.get(q));
+                if (matchIdx < sequence.count())
+                    matching = sequence.Find(matchIdx, queries.get(currIdx));
                 if (matching.length() > 1) //in case of x(2,4), x(4), G(2,4), G(4)...
                 {
                     for (int m = 0; m < matching.length(); m++) {
-                        matched[q + m] = matching.charAt(m);
-                        idx++;
+                        matched[currIdx + m] = matching.charAt(m);
                     }
-                    l += matching.length();
+                    idx += matching.length();
+                    matchIdx += matching.length();
                 } else if (matching.length() == 1 && matching != "0") //all other cases
                 {
                     matched[idx] = matching.toCharArray()[0];
-                    l++;
+                    matchIdx++;
                     idx++;
                 }
                 totalChecks++;
-                q++;
+                currIdx++;
                 if (totalChecks == queries.size()) //all queries checked
                 {
                     return matched;

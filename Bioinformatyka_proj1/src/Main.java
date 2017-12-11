@@ -3,8 +3,8 @@ public class Main {
 
     private static char[] scanProsite(String str) {
         String regex = "[RK]-G-{EDRKHPCG}-[AGSCI]-[FY]-[LIVA]-x-[FYM]";
-        //String regex = "[AC]-x-V-x(4)-{ED}";
-        //String regex = "RGQAF";
+//        String regex = "[AC]-x-V-x(4)-{ED}";
+//        String regex = "RGQAF";
         if (str.contains(regex))
             return regex.toCharArray();
         Matcher m = new Matcher(str, regex);
