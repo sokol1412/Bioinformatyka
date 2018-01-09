@@ -15,7 +15,7 @@ public class UPGMA {
         this.distances = initialDistances;
     }
 
-    public Tree run() {
+    public Tree generate() {
         int n = distances.getData().length;
         Tree[] clusters = new Tree[n];
         for (int i = 0; i < n; i++) {

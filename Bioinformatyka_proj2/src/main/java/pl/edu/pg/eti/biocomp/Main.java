@@ -14,11 +14,11 @@ class Main {
         Matrix matrix = CSV.load(fileName);
 
         UPGMA upgma = new UPGMA(matrix);
-        Tree upgmaTree = upgma.run();
+        Tree upgmaTree = upgma.generate();
         TreePrinter.print("\nUPGMA(" + fileName + ")", upgmaTree.getRootNode());
 
         NJ nj = new NJ(matrix);
-        Tree njTree = nj.run();
+        Tree njTree = nj.generate();
         TreePrinter.print("\nNJ(" + fileName + ")", njTree.getRootNode());
     }
 }
